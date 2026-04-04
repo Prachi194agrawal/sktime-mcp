@@ -9,6 +9,7 @@ from sktime_mcp.tools.format_tools import (
     format_time_series_tool,
     auto_format_on_load_tool,
 )
+from sktime_mcp.tools.load_model import load_model_tool
 
 __all__ = [
     "list_estimators_tool",
@@ -18,4 +19,5 @@ __all__ = [
     "export_code_tool",
     "format_time_series_tool",
     "auto_format_on_load_tool",
+    "load_model_tool",
 ]
