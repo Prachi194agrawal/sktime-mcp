@@ -6,6 +6,7 @@ Provides tools for loading data from various sources.
 
 import logging
 from typing import Any
+from sktime_mcp.runtime.async_runner import submit_coroutine
 
 from sktime_mcp.runtime.executor import get_executor
 
@@ -185,14 +186,10 @@ def load_data_source_async_tool(
     )
 
     # schedule on event loop
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+
 
     coro = executor.load_data_source_async(config, job_id)
-    asyncio.run_coroutine_threadsafe(coro, loop)
+    future = submit_coroutine(coro)
 
     return {
         "success": True,

@@ -263,7 +263,7 @@ class Executor:
             await asyncio.sleep(0.01)  # Yield control
 
             # Run fit in executor to avoid blocking
-            loop = asyncio.get_event_loop()
+            loop = asyncio.get_running_loop()
             fit_result = await loop.run_in_executor(
                 None, lambda: self.fit(handle_id, y, X=X, fh=fh)
             )
@@ -590,7 +590,7 @@ class Executor:
 
             from sktime_mcp.data import DataSourceRegistry
 
-            loop = asyncio.get_event_loop()
+            loop = asyncio.get_running_loop()
             adapter = DataSourceRegistry.create_adapter(config)
             data = await loop.run_in_executor(None, adapter.load)
 

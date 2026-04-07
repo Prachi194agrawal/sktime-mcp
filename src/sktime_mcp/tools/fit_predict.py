@@ -9,6 +9,7 @@ import logging
 from typing import Any
 
 from sktime_mcp.runtime.executor import get_executor
+from sktime_mcp.runtime.async_runner import submit_coroutine
 
 logger = logging.getLogger(__name__)
 
@@ -158,16 +159,10 @@ def fit_predict_async_tool(
     )
 
     # Schedule the async coroutine on the event loop
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        # No event loop in current thread, create one
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
 
     # Schedule the coroutine (non-blocking!)
     coro = executor.fit_predict_async(estimator_handle, dataset, horizon, job_id)
-    asyncio.run_coroutine_threadsafe(coro, loop)
+    future = submit_coroutine(coro)
 
     return {
         "success": True,
