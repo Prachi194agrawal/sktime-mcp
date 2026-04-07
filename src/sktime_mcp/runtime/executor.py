@@ -570,14 +570,15 @@ class Executor:
             Dictionary with data_handle and metadata
         """
         source_type = config.get("type", "unknown")
-
+        
         if job_id is None:
             job_id = self._job_manager.create_job(
                 job_type="data_loading",
-                estimator_handle="",
+                estimator_handle=None,                     
+                estimator_name=f"data_source:{source_type}", 
                 dataset_name=source_type,
                 total_steps=3,
-            )
+                )
 
         try:
             self._job_manager.update_job(job_id, status=JobStatus.RUNNING)
