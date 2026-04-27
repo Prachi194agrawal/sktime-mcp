@@ -171,7 +171,7 @@ Discover estimators by task type and capability tags.
 
 ---
 
-#### 2. `search_estimators`
+#### 2. `list_estimators` (query mode)
 Search estimators by name or description using text query.
 
 **Arguments:**
