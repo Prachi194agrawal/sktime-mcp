@@ -171,7 +171,7 @@ If you are using a virtual environment, or if `sktime-mcp` is not on your `PATH`
 Discover estimators by task type and capability tags.
 
 **Arguments:**
-- `task` (optional): Task type filter (`"forecasting"`, `"classification"`, `"regression"`, `"transformation"`, `"clustering"`)
+- `task` (optional): Task type filter (`"forecasting"`, `"classification"`, `"regression"`, `"transformation"`, `"clustering"`, `"detection"`)
 - `tags` (optional): Filter by capability tags (e.g., `{"capability:pred_int": true}`)
 - `limit` (optional): Maximum results (default: 50)
 

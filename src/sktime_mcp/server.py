@@ -160,10 +160,7 @@ async def list_tools() -> list[Tool]:
                 "properties": {
                     "task": {
                         "type": "string",
-                        "description": (
-                            "Task type filter: forecasting, classification, "
-                            "regression, transformation, clustering"
-                        ),
+                        "description": "Task type filter: forecasting, classification, regression, transformation, clustering, detection",
                     },
                     "tags": {
                         "type": "object",
